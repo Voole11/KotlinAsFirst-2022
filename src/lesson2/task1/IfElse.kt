@@ -4,6 +4,8 @@ package lesson2.task1
 
 import lesson1.task1.discriminant
 import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 // Урок 2: ветвления (здесь), логический тип (см. 2.2).
@@ -91,15 +93,10 @@ fun timeForHalfWay(
     val s = t1 * v1 + t2 * v2 + t3 * v3
     val s1 = t1 * v1
     val s2 = t2 * v2
-    val s3 = t3 * v3
     return when {
-        s1 + s2 <= s / 2 -> s / 2 / v3
-        s2 + s3 <= s / 2 -> s / 2 / v1
-        s1 == s / 2 -> t1
-        s3 == s / 2 -> t3
-        s1 + s2 > s / 2 -> t1 + (s / 2 - s1) / v2
-        s3 + s2 > s / 2 -> t3 + (s / 2 - s3) / v2
-        else -> return Double.NaN
+        s1 >= s / 2 -> (s / 2) / v1
+        s1 + s2 >= s / 2 -> t1 + (s / 2 - s1) / v2
+        else -> t1 + t2 + (s / 2 - s1 - s2) / v3
     }
 }
 
@@ -117,7 +114,16 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int = TODO()
+): Int {
+    var status = 0
+    if (kingX == rookX1 || kingY == rookY1) {
+        status++
+    }
+    if (kingX == rookX2 || kingY == rookY2) {
+        status += 2
+    }
+    return status
+}
 
 /**
  * Простая (2 балла)
@@ -143,7 +149,18 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    val biggestSide: Double = max(max(a, b), c)
+    val minSide1: Double = min(min(a, b), c)
+    val minSide2: Double = (a + b + c) - (biggestSide + minSide1)
+
+    return when {
+        biggestSide > minSide1 + minSide2 -> -1
+        biggestSide.pow(2) < minSide1.pow(2) + minSide2.pow(2) -> 0
+        biggestSide.pow(2) > minSide1.pow(2) + minSide2.pow(2) -> 2
+        else -> 1
+    }
+}
 
 /**
  * Средняя (3 балла)
