@@ -3,10 +3,7 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.math.pow
-import kotlin.math.sqrt
+import kotlin.math.*
 
 // Урок 2: ветвления (здесь), логический тип (см. 2.2).
 // Максимальное количество баллов = 6
@@ -139,7 +136,16 @@ fun rookOrBishopThreatens(
     kingX: Int, kingY: Int,
     rookX: Int, rookY: Int,
     bishopX: Int, bishopY: Int
-): Int = TODO()
+): Int {
+    var status = 0
+    if (kingX == rookX || kingY == rookY) {
+        status++
+    }
+    if (abs(kingX - bishopX) == abs(kingY - bishopY)) {
+        status += 2
+    }
+    return status
+}
 
 /**
  * Простая (2 балла)
