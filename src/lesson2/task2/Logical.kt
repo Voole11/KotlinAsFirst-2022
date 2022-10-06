@@ -3,6 +3,8 @@
 package lesson2.task2
 
 import lesson1.task1.sqr
+import kotlin.math.abs
+import kotlin.math.pow
 
 /**
  * Пример
@@ -21,7 +23,7 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
 fun isNumberHappy(number: Int): Boolean {
     val firstNumber = number / 1000
     val number2 = number / 100
-    val secondNumber = kotlin.math.abs(firstNumber * 10 - number2)
+    val secondNumber = abs(firstNumber * 10 - number2)
     val number3 = number / 10
     val thirdNumber = number3 - number2 * 10
     val fourthNumber = number - number3 * 10
@@ -39,7 +41,6 @@ fun isNumberHappy(number: Int): Boolean {
  * Считать, что ферзи не могут загораживать друг друга.
  */
 fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
-
 
 /**
  * Простая (2 балла)
@@ -59,7 +60,16 @@ fun daysInMonth(month: Int, year: Int): Int = TODO()
 fun circleInside(
     x1: Double, y1: Double, r1: Double,
     x2: Double, y2: Double, r2: Double
-): Boolean = TODO()
+): Boolean {
+    val radiusSum = r1 + r2
+    val a = abs(y2 - y1)
+    val b = abs(x2 - x1)
+    val c = (a.pow(2) + b.pow(2)).pow(1 / 2)
+    return when {
+        c >= radiusSum -> true
+        else -> false
+    }
+}
 
 /**
  * Средняя (3 балла)
