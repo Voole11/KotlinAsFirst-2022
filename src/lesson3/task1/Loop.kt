@@ -3,7 +3,6 @@
 package lesson3.task1
 
 import kotlin.math.*
-import kotlin.math.sqrt
 
 // Урок 3: циклы
 // Максимальное количество баллов = 9
@@ -73,15 +72,7 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int {
-    var result = 1
-    if (n == 0) return 1
-    for (m in 1..n) {
-        result *= m
-        if (n / 10.pow(result) == 0) break
-    }
-    return result
-}
+fun digitNumber(n: Int): Int = TODO()
 
 /**
  * Простая (2 балла)
@@ -96,7 +87,14 @@ fun fib(n: Int): Int = TODO()
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int {
+    var number = 0
+    for (i in 2..n) {
+        number = i
+        if (n % i == 0) break
+    }
+    return number
+}
 
 /**
  * Простая (2 балла)
