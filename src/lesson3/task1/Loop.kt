@@ -2,6 +2,7 @@
 
 package lesson3.task1
 
+import kotlin.math.*
 import kotlin.math.sqrt
 
 // Урок 3: циклы
@@ -17,7 +18,7 @@ import kotlin.math.sqrt
 fun factorial(n: Int): Double {
     var result = 1.0
     for (i in 1..n) {
-        result = result * i // Please do not fix in master
+        result *= i // Please do not fix in master
     }
     return result
 }
@@ -72,7 +73,15 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int {
+    var result = 1
+    if (n == 0) return 1
+    for (m in 1..n) {
+        result *= m
+        if (n / 10.pow(result) == 0) break
+    }
+    return result
+}
 
 /**
  * Простая (2 балла)
