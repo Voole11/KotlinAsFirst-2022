@@ -3,6 +3,7 @@
 package lesson3.task1
 
 import kotlin.math.*
+import kotlin.math.pow
 
 // Урок 3: циклы
 // Максимальное количество баллов = 9
