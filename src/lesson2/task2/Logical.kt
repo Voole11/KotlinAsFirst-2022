@@ -3,10 +3,6 @@
 package lesson2.task2
 
 import lesson1.task1.sqr
-import kotlin.math.abs
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.math.pow
 import kotlin.math.*
 
 /**
@@ -30,10 +26,7 @@ fun isNumberHappy(number: Int): Boolean {
     val number3 = number / 10
     val thirdNumber = number3 - number2 * 10
     val fourthNumber = number - number3 * 10
-    return when {
-        firstNumber + secondNumber == thirdNumber + fourthNumber -> true
-        else -> false
-    }
+    return firstNumber + secondNumber == thirdNumber + fourthNumber
 }
 
 /**
@@ -64,14 +57,14 @@ fun circleInside(
     x1: Double, y1: Double, r1: Double,
     x2: Double, y2: Double, r2: Double
 ): Boolean {
-    val radiusSum = r1 + r2
-    val a = abs(y2 - y1)
-    val b = abs(x2 - x1)
-    val c = (a.pow(2) + b.pow(2)).pow(1 / 2)
-    return when {
-        c >= radiusSum -> true
-        else -> false
-    }
+    val maxX = max(x1, x2)
+    val minX = min(x1, x2)
+    val maxY = max(y1, y2)
+    val minY = min(y1, y2)
+    val a = abs(maxY - minY)
+    val b = abs(maxX - minX)
+    val d = sqrt(a.pow(2) + b.pow(2))
+    return r1 + d <= r2
 }
 
 /**
@@ -84,12 +77,10 @@ fun circleInside(
  * Вернуть true, если кирпич пройдёт
  */
 fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
-    val brickMax = max(max(a, b), c)
-    val brickMin = min(min(a, b), c)
+    val brickMax = maxOf(a, b, c)
+    val brickMin = minOf(a, b, c)
     val brickMiddle = (a + b + c) - (brickMax + brickMin)
     val holeMax = max(r, s)
     val holeMin = min(r, s)
-    var result = false
-    if (brickMiddle <= holeMax && brickMin <= holeMin) result = true
-    return result
+    return brickMiddle <= holeMax && brickMin <= holeMin
 }

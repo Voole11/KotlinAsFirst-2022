@@ -3,7 +3,6 @@
 package lesson3.task1
 
 import kotlin.math.*
-import kotlin.math.pow
 
 // Урок 3: циклы
 // Максимальное количество баллов = 9
@@ -73,7 +72,16 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int {
+    var count = 0
+    var n1 = n
+    if (n1 == 0) count += 1
+    while (n1 > 0) {
+        n1 /= 10
+        count += 1
+    }
+    return count
+}
 
 /**
  * Простая (2 балла)
