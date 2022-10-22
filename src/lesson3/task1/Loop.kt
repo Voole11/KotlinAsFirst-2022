@@ -89,7 +89,11 @@ fun digitNumber(n: Int): Int {
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int {
+    val f = (1 + sqrt(5.0)) / 2.0
+    val f1 = (1 - sqrt(5.0)) / 2.0
+    return ((f.pow(n) - f1.pow(n)) / sqrt(5.0)).toInt()
+}
 
 /**
  * Простая (2 балла)
@@ -110,7 +114,8 @@ fun minDivisor(n: Int): Int {
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int = TODO()
+fun maxDivisor(n: Int): Int = n / minDivisor(n)
+
 
 /**
  * Простая (2 балла)
@@ -128,7 +133,19 @@ fun maxDivisor(n: Int): Int = TODO()
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-fun collatzSteps(x: Int): Int = TODO()
+fun collatzSteps(x: Int): Int {
+    var steps = 0
+    var x1 = x
+    while (x1 > 1) {
+        if (x1 % 2 == 0) {
+            x1 /= 2
+        } else run {
+            x1 = 3 * x1 + 1
+        }
+        steps++
+    }
+    return steps
+}
 
 /**
  * Средняя (3 балла)
@@ -166,7 +183,16 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    var n1 = n
+    var rev = 0
+    while (n1 != 0) {
+        val lastDigit = n1 % 10
+        rev = (rev * 10) + lastDigit
+        n1 /= 10
+    }
+    return rev
+}
 
 /**
  * Средняя (3 балла)
@@ -220,7 +246,16 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var digit = 1
+    var number = 1.0
+    var result = 0
+    while (n > 0) {
+        number++
+        digit = digit * 10 + (number.pow(2)).toInt()
+        result = (number - 1)
+    }
+}
 
 /**
  * Сложная (5 баллов)
