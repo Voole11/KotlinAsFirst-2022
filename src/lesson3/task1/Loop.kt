@@ -75,7 +75,7 @@ fun digitCountInNumber(n: Int, m: Int): Int =
 fun digitNumber(n: Int): Int {
     var count = 0
     var n1 = n
-    if (n1 == 0) count += 1
+    if (n1 == 0 || n1 == 1) count += 1
     while (n1 > 0) {
         n1 /= 10
         count += 1
@@ -246,16 +246,7 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int {
-    var digit = 1
-    var number = 1.0
-    var result = 0
-    while (n > 0) {
-        number++
-        digit = digit * 10 + (number.pow(2)).toInt()
-        result = (number - 1)
-    }
-}
+fun squareSequenceDigit(n: Int): Int = TODO()
 
 /**
  * Сложная (5 баллов)
