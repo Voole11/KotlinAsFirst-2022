@@ -74,11 +74,11 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  */
 fun digitNumber(n: Int): Int {
     var count = 0
-    var n1 = n
+    var n1 = abs(n)
     if (n1 == 0 || n1 == 1) count += 1
     while (n1 > 0) {
         n1 /= 10
-        count += 1
+        count++
     }
     return count
 }
@@ -102,7 +102,7 @@ fun fib(n: Int): Int {
  */
 fun minDivisor(n: Int): Int {
     var number = 0
-    for (i in 2..n) {
+    for (i in 2..sqrt(n.toDouble()).toInt()) {
         number = i
         if (n % i == 0) break
     }
@@ -153,13 +153,19 @@ fun collatzSteps(x: Int): Int {
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int {
-    val mn = m * n
-    for (i in 2..mn) {
-        if (i % n == 0 && i % m == 0) return i
+fun gcd(m: Int, n: Int): Int {
+    var a = m
+    var b = n
+    while (a != b) {
+        if (a > b)
+            a -= b
+        else b -= a
     }
-    return mn
+    return a
 }
+
+fun lcm(m: Int, n: Int): Int =
+    m * n / gcd(m, n)
 
 /**
  * Средняя (3 балла)
@@ -168,13 +174,7 @@ fun lcm(m: Int, n: Int): Int {
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean {
-    var result = true
-    for (i in 2..Int.MAX_VALUE) {
-        if (m % i == 0 && n % i == 0) result = false
-    }
-    return result
-}
+fun isCoPrime(m: Int, n: Int): Boolean = gcd(m, n) == 1
 
 /**
  * Средняя (3 балла)
