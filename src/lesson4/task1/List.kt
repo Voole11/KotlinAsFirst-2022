@@ -137,7 +137,11 @@ fun mean(list: List<Double>): Double = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun center(list: MutableList<Double>): MutableList<Double> = TODO()
+fun center(list: MutableList<Double>): MutableList<Double> {
+    val change = mean(list)
+    list.replaceAll { it - change }
+    return list
+}
 
 /**
  * Средняя (3 балла)
@@ -208,7 +212,14 @@ fun convert(n: Int, base: Int): List<Int> = TODO()
  * Использовать функции стандартной библиотеки, напрямую и полностью решающие данную задачу
  * (например, n.toString(base) и подобные), запрещается.
  */
-fun convertToString(n: Int, base: Int): String = TODO()
+
+fun digitToChar(m: Int) = when (m) {
+    in 0..9 -> '0' + m
+    else -> 'a' + m - 10
+}
+
+fun convertToString(n: Int, base: Int): String =
+    convert(n, base).map { digitToChar(it) }.joinToString("")
 
 /**
  * Средняя (3 балла)
@@ -231,7 +242,14 @@ fun decimal(digits: List<Int>, base: Int): Int = TODO()
  * Использовать функции стандартной библиотеки, напрямую и полностью решающие данную задачу
  * (например, str.toInt(base)), запрещается.
  */
-fun decimalFromString(str: String, base: Int): Int = TODO()
+
+fun charToInteger(m: Char): Int = when (m) {
+    in '0'..'9' -> m - '0'
+    else -> m - 'a' + 10
+}
+
+fun decimalFromString(str: String, base: Int): Int =
+    decimal(str.map { charToInteger(it) }, base)
 
 /**
  * Сложная (5 баллов)
