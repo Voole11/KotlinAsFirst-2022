@@ -76,7 +76,7 @@ fun digitNumber(n: Int): Int {
     var count = 0
     var n1 = abs(n)
     if (n1 == 0 || n1 == 1) count += 1
-    while (n1 > 0) {
+    else while (n1 > 0) {
         n1 /= 10
         count++
     }
@@ -100,21 +100,14 @@ fun fib(n: Int): Int {
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int {
-    var number = 0
-    for (i in 2..sqrt(n.toDouble()).toInt()) {
-        number = i
-        if (n % i == 0) break
-    }
-    return number
-}
+fun minDivisor(n: Int): Int = TODO()
 
 /**
  * Простая (2 балла)
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int = n / minDivisor(n)
+fun maxDivisor(n: Int): Int = TODO()
 
 
 /**
