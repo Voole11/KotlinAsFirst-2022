@@ -177,10 +177,10 @@ fun mostExpensive(description: String): String = TODO()
  */
 fun fromRoman(roman: String): Int {
     if (roman.isEmpty()) return -1
-    var ans = 0
-    var num: Int
+    var answer = 0
+    var number: Int
     for (i in roman.length - 1 downTo 0) {
-        num = when (roman[i]) {
+        number = when (roman[i]) {
             'I' -> 1
             'V' -> 5
             'X' -> 10
@@ -190,9 +190,9 @@ fun fromRoman(roman: String): Int {
             'M' -> 1000
             else -> return -1
         }
-        if (4 * num < ans) ans -= num else ans += num
+        if (4 * number < answer) answer -= number else answer += number
     }
-    return ans
+    return answer
 }
 
 /**
