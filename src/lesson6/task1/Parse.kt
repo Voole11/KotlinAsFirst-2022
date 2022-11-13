@@ -190,7 +190,7 @@ fun fromRoman(roman: String): Int {
             'M' -> num = 1000
             else -> ans = -1
         }
-        if (4 * num < ans + 1) ans -= num else ans += num
+        if (4 * num < ans) ans -= num else ans += num
     }
     return ans
 }
