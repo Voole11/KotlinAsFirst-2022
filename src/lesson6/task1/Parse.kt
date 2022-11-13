@@ -121,8 +121,8 @@ fun bestLongJump(jumps: String): Int {
     var result = -1
     for (i in split) {
         if (i.any { it.isDigit() })
-        if ((i !in "-%") && i.any { !it.isDigit() }) return -1
-            result = max(result, i.toInt())
+            if ((i !in "-%") && i.any { !it.isDigit() }) return -1
+        result = max(result, i.toInt())
     }
     return result
 }
