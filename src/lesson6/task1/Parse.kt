@@ -178,17 +178,17 @@ fun mostExpensive(description: String): String = TODO()
 fun fromRoman(roman: String): Int {
     if (roman.isEmpty()) return -1
     var ans = 0
-    var num = 0
+    var num: Int
     for (i in roman.length - 1 downTo 0) {
-        when (roman[i]) {
-            'I' -> num = 1
-            'V' -> num = 5
-            'X' -> num = 10
-            'L' -> num = 50
-            'C' -> num = 100
-            'D' -> num = 500
-            'M' -> num = 1000
-            else -> ans = -1
+        num = when (roman[i]) {
+            'I' -> 1
+            'V' -> 5
+            'X' -> 10
+            'L' -> 50
+            'C' -> 100
+            'D' -> 500
+            'M' -> 1000
+            else -> return -1
         }
         if (4 * num < ans) ans -= num else ans += num
     }
