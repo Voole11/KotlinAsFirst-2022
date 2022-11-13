@@ -120,9 +120,9 @@ fun bestLongJump(jumps: String): Int {
     val split = jumps.split(" ")
     var result = -1
     for (i in split) {
+        if ((i !in "-%") && i.any { !it.isDigit() }) return -1
         if (i.any { it.isDigit() })
-            if ((i !in "-%") && i.any { !it.isDigit() }) return -1
-        result = max(result, i.toInt())
+            result = max(result, i.toInt())
     }
     return result
 }
