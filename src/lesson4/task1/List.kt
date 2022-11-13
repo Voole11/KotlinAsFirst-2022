@@ -140,10 +140,7 @@ fun mean(list: List<Double>): Double =
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun center(list: MutableList<Double>): Any {
-    return if (list.isEmpty()) list
-    else list.sum() / list.size
-}
+fun center(list: MutableList<Double>): MutableList<Double>  = TODO()
 
 /**
  * Средняя (3 балла)
