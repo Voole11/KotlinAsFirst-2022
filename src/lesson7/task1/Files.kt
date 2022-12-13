@@ -100,13 +100,16 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
  *
  */
 fun sibilants(inputName: String, outputName: String) = File(outputName).bufferedWriter().use { writer ->
+    var s = File(inputName).readText()
     for (i in "ЖЧШЩжчшщ") {
         for ((a, b) in mapOf("Ы" to "И", "ы" to "и", "Я" to "А", "я" to "а", "Ю" to "У", "ю" to "у")) {
-            writer.write(File(inputName).readText().replace(i.toString() + a, i.toString() + b))
-            writer.newLine()
+            s = s.replace(i.toString() + a, i.toString() + b)
         }
     }
+    writer.write(s)
+    writer.close()
 }
+
 
 /**
  * Средняя (15 баллов)
