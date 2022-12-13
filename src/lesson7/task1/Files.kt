@@ -63,7 +63,15 @@ fun alignFile(inputName: String, lineLength: Int, outputName: String) {
  * Подчёркивание в середине и/или в конце строк значения не имеет.
  */
 fun deleteMarked(inputName: String, outputName: String) {
-    TODO()
+    File(outputName).bufferedWriter().use { writer ->
+        for (line in File(inputName).readLines()) {
+            if (!Regex("""^_.*$""").matches(line)) {
+                writer.write(line)
+                writer.newLine()
+            }
+        }
+        writer.close()
+    }
 }
 
 /**
@@ -91,8 +99,13 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
  * Исключения (жюри, брошюра, парашют) в рамках данного задания обрабатывать не нужно
  *
  */
-fun sibilants(inputName: String, outputName: String) {
-    TODO()
+fun sibilants(inputName: String, outputName: String) = File(outputName).bufferedWriter().use { writer ->
+    for (i in "ЖЧШЩжчшщ") {
+        for ((a, b) in mapOf("Ы" to "И", "ы" to "и", "Я" to "А", "я" to "а", "Ю" to "У", "ю" to "у")) {
+            writer.write(File(inputName).readText().replace(i.toString() + a, i.toString() + b))
+            writer.newLine()
+        }
+    }
 }
 
 /**
