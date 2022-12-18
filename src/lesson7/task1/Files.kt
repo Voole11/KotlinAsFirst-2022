@@ -3,6 +3,7 @@
 package lesson7.task1
 
 import java.io.File
+import kotlin.math.*
 
 // Урок 7: работа с файлами
 // Урок интегральный, поэтому его задачи имеют сильно увеличенную стоимость
@@ -129,7 +130,15 @@ fun sibilants(inputName: String, outputName: String) = File(outputName).buffered
  *
  */
 fun centerFile(inputName: String, outputName: String) {
-    TODO()
+    val writer = File(outputName).bufferedWriter()
+    val lines = File(inputName).readLines()
+    val maxLength = lines.maxByOrNull { it.trim().length }?.trim()?.length ?: 0
+    for (line in lines) {
+        val spaces = " ".repeat((maxLength - line.trim().length) / 2)
+        writer.write(spaces + line.trim())
+        writer.newLine()
+    }
+    writer.close()
 }
 
 /**
@@ -467,4 +476,3 @@ fun printMultiplicationProcess(lhv: Int, rhv: Int, outputName: String) {
 fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String) {
     TODO()
 }
-
