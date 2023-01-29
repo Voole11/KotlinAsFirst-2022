@@ -100,14 +100,23 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
  * Исключения (жюри, брошюра, парашют) в рамках данного задания обрабатывать не нужно
  *
  */
-fun sibilants(inputName: String, outputName: String) = File(outputName).bufferedWriter().use { writer ->
-    var s = File(inputName).readText()
-    for (i in "ЖЧШЩжчшщ") {
-        for ((a, b) in mapOf("Ы" to "И", "ы" to "и", "Я" to "А", "я" to "а", "Ю" to "У", "ю" to "у")) {
-            s = s.replace(i.toString() + a, i.toString() + b)
-        }
+fun correctLetter(letter: String): String {
+    return when (letter) {
+        "ы" -> "и"
+        "Ы" -> "И"
+        "я" -> "а"
+        "Я" -> "А"
+        "ю" -> "у"
+        else -> "У"
     }
-    writer.write(s)
+}
+
+fun sibilants(inputName: String, outputName: String) {
+    val writer = File(outputName).bufferedWriter()
+    val reg = Regex("""([жчшщ])([ыяю])""", RegexOption.IGNORE_CASE)
+    val text = File(inputName).readText()
+    val newText = text.replace(reg) { it.groupValues[1] + correctLetter(it.groupValues[2]) }
+    writer.write(newText)
     writer.close()
 }
 
@@ -258,7 +267,12 @@ fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: 
  * Обратите внимание: данная функция не имеет возвращаемого значения
  */
 fun chooseLongestChaoticWord(inputName: String, outputName: String) {
-    TODO()
+    val writer = File(outputName).bufferedWriter()
+    val max: Int
+    val min: Int
+    val length1: Int
+    var currentLineLength = 0
+    File(inputName).forEachLine { line -> line.length }
 }
 
 /**
@@ -476,3 +490,4 @@ fun printMultiplicationProcess(lhv: Int, rhv: Int, outputName: String) {
 fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String) {
     TODO()
 }
+
