@@ -2,7 +2,6 @@
 
 package lesson6.task1
 
-import kotlin.math.max
 
 // Урок 6: разбор строк, исключения
 // Максимальное количество баллов = 13
@@ -116,16 +115,7 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  * Прочитать строку и вернуть максимальное присутствующее в ней число (717 в примере).
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
-fun bestLongJump(jumps: String): Int {
-    val split = jumps.split(" ")
-    var result = -1
-    for (i in split) {
-        if ((i !in "-%") && i.any { !it.isDigit() }) return -1
-        if (i.any { it.isDigit() })
-            result = max(result, i.toInt())
-    }
-    return result
-}
+fun bestLongJump(jumps: String): Int = TODO()
 
 /**
  * Сложная (6 баллов)
@@ -138,16 +128,7 @@ fun bestLongJump(jumps: String): Int {
  * При нарушении формата входной строки, а также в случае отсутствия удачных попыток,
  * вернуть -1.
  */
-fun bestHighJump(jumps: String): Int {
-    val check = jumps.split(" ")
-    var maxJump = -1
-    if (check.size % 2 != 0) return -1
-    for (str in check.indices step 2) {
-        val res = check[str].toIntOrNull() ?: return -1
-        if ("+" in check[str + 1]) maxJump = max(maxJump, res)
-    }
-    return maxJump
-}
+fun bestHighJump(jumps: String): Int = TODO()
 
 /**
  * Сложная (6 баллов)
@@ -169,15 +150,7 @@ fun plusMinus(expression: String): Int = TODO()
  * Вернуть индекс начала первого повторяющегося слова, или -1, если повторов нет.
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
-fun firstDuplicateIndex(str: String): Any {
-    if (str.length <= 1) return str
-    return if (str[0] == str[1]) firstDuplicateIndex(
-        str.substring(1)
-    ) else str[0]
-        .toString() + firstDuplicateIndex(
-        str.substring(1)
-    )
-}
+fun firstDuplicateIndex(str: String): Any = TODO()
 
 /**
  * Сложная (6 баллов)
@@ -190,7 +163,22 @@ fun firstDuplicateIndex(str: String): Any {
  * или пустую строку при нарушении формата строки.
  * Все цены должны быть больше нуля либо равны нулю.
  */
-fun mostExpensive(description: String): String = TODO()
+fun mostExpensive(description: String): String {
+    var maxPrice = Double.MIN_VALUE
+    var mostExpensiveItem = ""
+    description.split("; ").forEach { item ->
+        val parts = item.split(" ")
+        if (parts.size == 2) {
+            val price = parts[1].toDoubleOrNull()
+            if (price != null && price >= 0 && price > maxPrice) {
+                maxPrice = price
+                mostExpensiveItem = parts[0]
+            }
+        }
+    }
+    return mostExpensiveItem
+}
+
 
 /**
  * Сложная (6 баллов)
