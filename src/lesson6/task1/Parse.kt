@@ -170,13 +170,17 @@ fun mostExpensive(description: String): String {
         val parts = item.split(" ")
         if (parts.size == 2) {
             val price = parts[1].toDoubleOrNull()
-            if (price != null && price > maxPrice) {
+            if (price != null && price >= 0 && price > maxPrice) {
                 maxPrice = price
                 mostExpensiveItem = parts[0]
             }
         }
     }
-    return if (mostExpensiveItem.isEmpty()) "" else "Any good with price $maxPrice"
+    return if (mostExpensiveItem.isEmpty()) {
+        "Any good with price 0.0"
+    } else {
+        mostExpensiveItem
+    }
 }
 
 /**
