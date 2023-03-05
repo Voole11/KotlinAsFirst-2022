@@ -184,7 +184,7 @@ fun mostExpensive(description: String): String {
     return if (mostExpensiveItem.isNotEmpty()) {
         "$mostExpensiveItem ${"%.2f".format(maxPrice)}"
     } else {
-        "No items found"
+        " "
     }
 }
 
