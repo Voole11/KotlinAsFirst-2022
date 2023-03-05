@@ -166,20 +166,25 @@ fun firstDuplicateIndex(str: String): Any = TODO()
 fun mostExpensive(description: String): String {
     var maxPrice = Double.MIN_VALUE
     var mostExpensiveItem = ""
+
     description.split("; ").forEach { item ->
-        val parts = item.split(" ")
+        val parts = item.trim().split(" ")
+
         if (parts.size == 2) {
-            val price = parts[1].toDoubleOrNull()
-            if (price != null && price >= 0 && price > maxPrice) {
-                maxPrice = price
-                mostExpensiveItem = parts[0]
+            val itemName = parts[0]
+            val itemPrice = parts[1].toDoubleOrNull()
+
+            if (itemPrice != null && itemPrice >= 0 && itemPrice > maxPrice) {
+                maxPrice = itemPrice
+                mostExpensiveItem = itemName
             }
         }
     }
-    return if (mostExpensiveItem.isEmpty()) {
-        "Any good with price 0.0"
+
+    return if (mostExpensiveItem.isNotEmpty()) {
+        "$mostExpensiveItem ${"%.2f".format(maxPrice)}"
     } else {
-        mostExpensiveItem
+        "No items found"
     }
 }
 
