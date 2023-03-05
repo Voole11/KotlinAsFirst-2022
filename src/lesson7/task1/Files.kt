@@ -258,9 +258,7 @@ fun chooseLongestChaoticWord(inputName: String, outputName: String) {
     var maxLength = 0
 
     File(inputName).forEachLine { word ->
-        // Приводим слово к нижнему регистру и удаляем повторяющиеся символы
         val uniqueChars = word.toLowerCase().toSet()
-        // Если количество уникальных символов в слове равно его длине, добавляем его в список
         if (uniqueChars.size == word.length && word.length >= maxLength) {
             if (word.length > maxLength) {
                 words.clear()
@@ -269,8 +267,6 @@ fun chooseLongestChaoticWord(inputName: String, outputName: String) {
             words.add(word)
         }
     }
-
-    // Записываем наибольшие слова в выходной файл через запятую
     File(outputName).writeText(words.joinToString(", "))
 }
 

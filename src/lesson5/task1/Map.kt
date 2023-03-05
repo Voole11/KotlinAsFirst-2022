@@ -198,19 +198,7 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
  *     "печенье"
  *   ) -> "Мария"
  */
-fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String? {
-    var answ: String? = null
-    var mincost = Double.MAX_VALUE
-    for ((name, type) in stuff) {
-        if (type.first == kind) {
-            if (type.second <= mincost) {
-                answ = name
-                mincost = type.second
-            }
-        }
-    }
-    return answ
-}
+fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): String = TODO()
 
 /**
  * Средняя (3 балла)
@@ -221,8 +209,7 @@ fun findCheapestStuff(stuff: Map<String, Pair<String, Double>>, kind: String): S
  * Например:
  *   canBuildFrom(listOf('a', 'b', 'o'), "baobab") -> true
  */
-fun canBuildFrom(chars: List<Char>, word: String): Boolean =
-    chars.map { it.lowercaseChar() }.containsAll(word.toSet().map { it.lowercaseChar() })
+fun canBuildFrom(chars: List<Char>, word: String): Boolean = TODO()
 
 /**
  * Средняя (4 балла)
@@ -305,7 +292,19 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  *   findSumOfTwo(listOf(1, 2, 3), 4) -> Pair(0, 2)
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
-fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> = TODO()
+fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
+    val set = HashSet<Int>()
+    for (i in list.indices) {
+        val complement = number - list[i]
+        if (set.contains(complement)) {
+            val j = list.indexOf(complement)
+            return if (i < j) Pair(i, j) else Pair(j, i)
+        }
+        set.add(list[i])
+    }
+    return Pair(-1, -1)
+}
+
 
 /**
  * Очень сложная (8 баллов)
